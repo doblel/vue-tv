@@ -46,7 +46,11 @@ onUnmounted(() => {
           <p v-html="store.showDetails.info?.summary"></p>
         </div>
       </div>
-      <HorizontalSection v-if="store.showDetails.cast.length" name="Cast">
+      <HorizontalSection
+        v-if="store.showDetails.cast.length"
+        name="Cast"
+        class="cast"
+      >
         <CastCard
           v-for="{ person: { id, name, image } } in store.showDetails.cast"
           :key="id"
@@ -63,6 +67,10 @@ onUnmounted(() => {
   position: absolute;
   top: 1rem;
   left: 1rem;
+}
+
+.cast {
+  padding: 1rem;
 }
 
 .title,
@@ -103,6 +111,9 @@ onUnmounted(() => {
     margin: 1rem 0;
   }
 
+  .cast {
+    padding: 0;
+  }
   .details-page {
     padding: 1rem;
     max-width: 1000px;
