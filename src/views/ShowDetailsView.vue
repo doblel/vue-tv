@@ -48,7 +48,6 @@ onUnmounted(() => {
       </div>
       <HorizontalSection
         v-if="store.showDetails.cast.length"
-        style="padding: 1rem"
         name="Cast"
       >
         <CastCard
@@ -122,7 +121,7 @@ onUnmounted(() => {
 
   .info__image {
     max-width: 350px;
-    height: 70vh;
+    height: 55vh;
   }
 }
 </style>

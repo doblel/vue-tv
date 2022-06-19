@@ -110,6 +110,7 @@ async function handleSearch(term, updateUrl = true) {
 }
 
 .banner__content {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
