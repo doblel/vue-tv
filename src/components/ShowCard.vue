@@ -9,6 +9,7 @@ defineProps({
   image: {
     type: String,
     required: true,
+    default: '',
   },
   id: {
     type: Number,

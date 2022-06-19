@@ -31,7 +31,7 @@ function handleHorizontalScroll(ev) {
     <div
       class="horizontal-section__content"
       ref="scrollContainer"
-      @wheel.self="handleHorizontalScroll"
+      @wheel="handleHorizontalScroll"
     >
       <slot></slot>
     </div>

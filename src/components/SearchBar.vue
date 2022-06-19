@@ -21,8 +21,8 @@ function handleSubmit() {
 
 <template>
   <form class="searchbar" @submit.prevent="handleSubmit">
-    <input type="text" v-model="term" placeholder="Search tv show" class="searchbar__input">
-    <button class="searchbar__button" type="submit">Search</button>
+    <input type="text" v-model="term" placeholder="Search..." class="searchbar__input">
+    <button class="searchbar__button" type="submit">🔍</button>
   </form>
 </template>
 
@@ -32,7 +32,6 @@ function handleSubmit() {
   display: flex;
   align-items: center;
   width: 100%;
-  max-width: 350px;
   flex-shrink: 0;
 }
 
