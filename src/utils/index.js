@@ -1,5 +1,6 @@
 function formatShows(shows = []) {
   return shows
+    .filter(show => show.image?.original || show.image?.medium)
     .map(show => ({
       id: show.id,
       name: show.name,

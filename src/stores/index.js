@@ -6,8 +6,9 @@ import { GENRES } from '@/constants';
 
 export const useStore = defineStore('main', {
   state: () => ({
-    homeSelection: null,
-    results: [],
+    _homeSelection: null,
+    _results: [],
+    _showDetails: null,
     loading: {
       sections: false,
       results: false,
@@ -15,8 +16,9 @@ export const useStore = defineStore('main', {
     }
   }),
   getters: {
-    getHomeSelection: (state) => state.homeSelection,
-    getSearchResults: (state) => state.results,
+    homeSelection: (state) => state._homeSelection,
+    searchResults: (state) => state._results,
+    showDetails: (state) => state._showDetails,
     areSectionsLoading: (state) => state.loading.home,
     areResultsLoading: (state) => state.loading.results,
     areDetailsLoading: (state) => state.loading.details,
@@ -29,15 +31,35 @@ export const useStore = defineStore('main', {
       const shows = formatShows(data);
       const byGenre = mapShowsByGenre(shows, GENRES);
 
-      this.homeSelection = byGenre;
+      this._homeSelection = byGenre;
       this.loading.sections = false;
     },
-    async searchResults(term) {
+    async fetchResults(term) {
       this.loading.results = true;
       const { data } = await ShowsApi.searchByTerm(term);
 
-      this.results = formatShows(data.map(res => res.show));
+      this._results = formatShows(data.map(res => res.show));
       this.loading.results = false;
+    },
+    async fetchShowDetails(id) {
+      this.loading.details = true;
+      const { data } = await ShowsApi.getShowDetails(id);
+
+      this._showDetails = {
+        info: {
+          id,
+          image: data.image?.original || data.image?.medium,
+          name: data.name,
+          summary: data.summary,
+          average: data.rating?.average
+        },
+        seasons: data._embedded?.seasons || [],
+        cast: data._embedded.cast || []
+      };
+      this.loading.details = false;
+    },
+    removeShowDetails() {
+      this._showDetails = null;
     }
   }
 })
