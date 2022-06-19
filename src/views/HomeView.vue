@@ -1,22 +1,20 @@
 <script setup>
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-import ShowsApi from '@/api/shows';
-import { useStore } from '@/stores';
-import { GENRES } from '@/constants';
-import { formatShows } from '@/utils';
+import { useStore } from "@/stores";
+import { GENRES } from "@/constants";
 
-import HorizontalSection from '@/components/HorizontalSection.vue';
-import ShowCard from '@/components/ShowCard.vue';
-import SearchBar from '@/components/SearchBar.vue';
+import HorizontalSection from "@/components/HorizontalSection.vue";
+import ShowCard from "@/components/ShowCard.vue";
+import SearchBar from "@/components/SearchBar.vue";
 
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
 
 const state = reactive({
-  searchTerm: ''
+  searchTerm: "",
 });
 
 onMounted(async () => {
@@ -24,12 +22,12 @@ onMounted(async () => {
   // from a show details to the home page
   if (!store.homeSelection) {
     // get all shows and create the home page selection
-    store.generateHomeSelection()
+    store.generateHomeSelection();
   }
-  
+
   // if you enter the page with a query, populate the result
   // without updating the URL
-  if(route.query?.q) {
+  if (route.query?.q) {
     handleSearch(route.query.q, false);
   }
 });
@@ -39,7 +37,7 @@ async function handleSearch(term, updateUrl = true) {
   state.searchTerm = term;
 
   if (updateUrl) {
-    router.push({ path: '/', query: {...route.query, q: term}})
+    router.push({ path: "/", query: { ...route.query, q: term } });
   }
 }
 </script>
@@ -58,26 +56,29 @@ async function handleSearch(term, updateUrl = true) {
     <template v-if="store.areResultsLoading">
       <h1>LOADING RESULTS..</h1>
     </template>
-    <HorizontalSection v-if="store.searchResults.length && !store.areResultsLoading" :name="`Results for ${state.searchTerm}`">
+    <HorizontalSection
+      v-if="store.searchResults.length && !store.areResultsLoading"
+      :name="`Results for ${state.searchTerm}`"
+    >
       <ShowCard
-        :id='show.id'
-        :name='show.name'
-        :image='show.image'
-        v-for='show in store.searchResults'
-        :key='show.id'
+        :id="show.id"
+        :name="show.name"
+        :image="show.image"
+        v-for="show in store.searchResults"
+        :key="show.id"
       />
     </HorizontalSection>
     <template v-if="store.areSectionsLoading">
       <h1>LOADING SECTIONS..</h1>
     </template>
     <template v-if="store.homeSelection && !store.areSectionsLoading">
-      <HorizontalSection :name='genre' v-for='genre in GENRES' :key='genre'>
+      <HorizontalSection :name="genre" v-for="genre in GENRES" :key="genre">
         <ShowCard
-          :id='show.id'
-          :name='show.name'
-          :image='show.image'
-          v-for='show in store.homeSelection[genre]'
-          :key='show.id'
+          :id="show.id"
+          :name="show.name"
+          :image="show.image"
+          v-for="show in store.homeSelection[genre]"
+          :key="show.id"
         />
       </HorizontalSection>
     </template>
@@ -94,18 +95,18 @@ async function handleSearch(term, updateUrl = true) {
   display: flex;
   height: 50vh;
   background-size: cover;
-  background-image: url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fall-movies-index-1628968089.jpg');
+  background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/fall-movies-index-1628968089.jpg");
 }
 
 .banner:before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-image: linear-gradient(to bottom right,#000e17,#080514);
-  opacity: .6; 
+  background-image: linear-gradient(to bottom right, #000e17, #080514);
+  opacity: 0.6;
 }
 
 .banner__content {

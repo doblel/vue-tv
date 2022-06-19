@@ -1,18 +1,20 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 
 const router = useRouter();
 </script>
 
 <template>
-  <button class="go-back-button" @click="router.go(-1)">👈 Go back to home</button>
+  <button class="go-back-button" @click="router.go(-1)">
+    👈 Go back to home
+  </button>
 </template>
 
 <style scoped>
 @import "@/assets/base.css";
 
 .go-back-button {
-  font-weight: 700; 
+  font-weight: 700;
   font-size: 1rem;
   z-index: 10;
   background: var(--color-white);
@@ -21,6 +23,6 @@ const router = useRouter();
   border: none;
   outline: none;
   color: var(--color-black);
-  cursor: pointer
+  cursor: pointer;
 }
 </style>

@@ -2,19 +2,19 @@
 defineProps({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   image: {
     type: String,
     required: true,
-    default: ''
-  }
-})
+    default: "",
+  },
+});
 </script>
 
 <template>
   <div class="cast-card">
-    <img :src="image" alt="" class="cast-card__image">
+    <img :src="image" alt="" class="cast-card__image" />
     <span class="cast-card__name">{{ name }}</span>
   </div>
 </template>

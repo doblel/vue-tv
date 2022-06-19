@@ -9,7 +9,7 @@ defineProps({
   image: {
     type: String,
     required: true,
-    default: '',
+    default: "",
   },
   id: {
     type: Number,
@@ -19,17 +19,15 @@ defineProps({
 </script>
 
 <template>
-  <RouterLink
-    :to="`/show/${id}`"
-  >
-    <img :src="image" class="show-card" loading="lazy" :alt="`${name} image`">
+  <RouterLink :to="`/show/${id}`">
+    <img :src="image" class="show-card" loading="lazy" :alt="`${name} image`" />
     <span class="sr-only">{{ name }}</span>
   </RouterLink>
 </template>
 
 <style scoped>
 @import "@/assets/base.css";
- 
+
 .show-card {
   display: inline-block;
   flex-shrink: 0;

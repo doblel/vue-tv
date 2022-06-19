@@ -1,12 +1,12 @@
 function formatShows(shows = []) {
   return shows
-    .filter(show => show.image?.original || show.image?.medium)
-    .map(show => ({
+    .filter((show) => show.image?.original || show.image?.medium)
+    .map((show) => ({
       id: show.id,
       name: show.name,
       rating: show.rating?.average,
       genres: show.genres,
-      image: show.image?.original || show.image?.medium
+      image: show.image?.original || show.image?.medium,
     }))
     .sort((a, b) => (a.rating > b.rating ? -1 : 1));
 }
@@ -16,13 +16,10 @@ function mapShowsByGenre(shows = [], genres = []) {
   const byGenre = {};
 
   for (let genre of genres) {
-    byGenre[genre] = shows.filter(show => show.genres.includes(genre));
+    byGenre[genre] = shows.filter((show) => show.genres.includes(genre));
   }
 
   return byGenre;
 }
 
-export {
-  formatShows,
-  mapShowsByGenre
-}
+export { formatShows, mapShowsByGenre };

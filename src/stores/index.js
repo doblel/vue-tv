@@ -1,10 +1,10 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-import ShowsApi from '@/api/shows';
-import { formatShows, mapShowsByGenre } from '@/utils';
-import { GENRES } from '@/constants';
+import ShowsApi from "@/api/shows";
+import { formatShows, mapShowsByGenre } from "@/utils";
+import { GENRES } from "@/constants";
 
-export const useStore = defineStore('main', {
+export const useStore = defineStore("main", {
   state: () => ({
     _homeSelection: null,
     _results: [],
@@ -12,8 +12,8 @@ export const useStore = defineStore('main', {
     loading: {
       sections: false,
       results: false,
-      details: false
-    }
+      details: false,
+    },
   }),
   getters: {
     homeSelection: (state) => state._homeSelection,
@@ -26,7 +26,7 @@ export const useStore = defineStore('main', {
   actions: {
     async generateHomeSelection() {
       this.loading.sections = true;
-      
+
       const { data } = await ShowsApi.getAll();
       const shows = formatShows(data);
       const byGenre = mapShowsByGenre(shows, GENRES);
@@ -38,7 +38,7 @@ export const useStore = defineStore('main', {
       this.loading.results = true;
       const { data } = await ShowsApi.searchByTerm(term);
 
-      this._results = formatShows(data.map(res => res.show));
+      this._results = formatShows(data.map((res) => res.show));
       this.loading.results = false;
     },
     async fetchShowDetails(id) {
@@ -51,15 +51,15 @@ export const useStore = defineStore('main', {
           image: data.image?.original || data.image?.medium,
           name: data.name,
           summary: data.summary,
-          average: data.rating?.average
+          average: data.rating?.average,
         },
         seasons: data._embedded?.seasons || [],
-        cast: data._embedded.cast || []
+        cast: data._embedded.cast || [],
       };
       this.loading.details = false;
     },
     removeShowDetails() {
       this._showDetails = null;
-    }
-  }
-})
+    },
+  },
+});

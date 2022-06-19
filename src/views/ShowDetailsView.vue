@@ -1,13 +1,12 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 
-import ShowsApi from "@/api/shows";
-import { useStore } from '../stores';
+import { useStore } from "../stores";
 
-import HorizontalSection from '@/components/HorizontalSection.vue';
-import CastCard from '@/components/CastCard.vue';
-import GoBackButton from '@/components/GoBackButton.vue';
+import HorizontalSection from "@/components/HorizontalSection.vue";
+import CastCard from "@/components/CastCard.vue";
+import GoBackButton from "@/components/GoBackButton.vue";
 
 const route = useRoute();
 const store = useStore();
@@ -24,27 +23,43 @@ onUnmounted(() => {
 </script>
 
 <template>
-<div class="details-page">
-  <template v-if="store.areDetailsLoading">Loading details...</template>
-  <template v-if="store.showDetails && !store.areDetailsLoading">
-    <GoBackButton class="back-cta" />
-    <div class="info">
-      <img class="info__image" :src="store.showDetails.info?.image" alt="Show Image">
-      <div class="info__description">
-        <h1 class="title">{{ store.showDetails.info?.name }} <span v-if="store.showDetails.info.average">(⭐ {{store.showDetails.info.average}})</span></h1>
-        <h4 class="seasons">{{ store.showDetails.seasons?.length }} Seasons</h4>
-        <p v-html="store.showDetails.info?.summary"></p>
+  <div class="details-page">
+    <template v-if="store.areDetailsLoading">Loading details...</template>
+    <template v-if="store.showDetails && !store.areDetailsLoading">
+      <GoBackButton class="back-cta" />
+      <div class="info">
+        <img
+          class="info__image"
+          :src="store.showDetails.info?.image"
+          alt="Show Image"
+        />
+        <div class="info__description">
+          <h1 class="title">
+            {{ store.showDetails.info?.name }}
+            <span v-if="store.showDetails.info.average"
+              >(⭐ {{ store.showDetails.info.average }})</span
+            >
+          </h1>
+          <h4 class="seasons">
+            {{ store.showDetails.seasons?.length }} Seasons
+          </h4>
+          <p v-html="store.showDetails.info?.summary"></p>
+        </div>
       </div>
-    </div>
-    <HorizontalSection v-if="store.showDetails.cast.length" style="padding: 1rem" name="Cast">
-      <CastCard 
-        v-for="{ person: { id, name, image } } in store.showDetails.cast" :key="id"
-        :name="name"
-        :image="image?.original || image?.medium"
-      />
-    </HorizontalSection>
-  </template>
-</div>
+      <HorizontalSection
+        v-if="store.showDetails.cast.length"
+        style="padding: 1rem"
+        name="Cast"
+      >
+        <CastCard
+          v-for="{ person: { id, name, image } } in store.showDetails.cast"
+          :key="id"
+          :name="name"
+          :image="image?.original || image?.medium"
+        />
+      </HorizontalSection>
+    </template>
+  </div>
 </template>
 
 <style scoped>
@@ -54,7 +69,8 @@ onUnmounted(() => {
   left: 1rem;
 }
 
-.title, .seasons {
+.title,
+.seasons {
   font-weight: 700;
   line-height: 1;
   margin-bottom: 0.9rem;

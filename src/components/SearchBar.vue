@@ -1,27 +1,32 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
 const props = defineProps({
   defaultValue: {
     type: String,
-    default: ''
-  }
+    default: "",
+  },
 });
 
-const emit = defineEmits(['search', 'click']);
+const emit = defineEmits(["search", "click"]);
 
 const term = ref(props.defaultValue);
 
 function handleSubmit() {
-  if (!!term.value) {
-    emit('search', term.value);
+  if (term.value) {
+    emit("search", term.value);
   }
 }
 </script>
 
 <template>
   <form class="searchbar" @submit.prevent="handleSubmit">
-    <input type="text" v-model="term" placeholder="Search..." class="searchbar__input">
+    <input
+      type="text"
+      v-model="term"
+      placeholder="Search..."
+      class="searchbar__input"
+    />
     <button class="searchbar__button" type="submit">🔍</button>
   </form>
 </template>
@@ -61,7 +66,7 @@ function handleSubmit() {
     max-width: 600px;
   }
 
-  .searchbar__input { 
+  .searchbar__input {
     height: 50px;
   }
 
