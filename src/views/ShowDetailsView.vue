@@ -46,10 +46,7 @@ onUnmounted(() => {
           <p v-html="store.showDetails.info?.summary"></p>
         </div>
       </div>
-      <HorizontalSection
-        v-if="store.showDetails.cast.length"
-        name="Cast"
-      >
+      <HorizontalSection v-if="store.showDetails.cast.length" name="Cast">
         <CastCard
           v-for="{ person: { id, name, image } } in store.showDetails.cast"
           :key="id"
