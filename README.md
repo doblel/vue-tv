@@ -35,6 +35,10 @@ The project follows the recommended structure Vue proposes.
 - `/store` -> implement all the logic related to calling the API and processing the shows.
 - `/utils` -> utility functions as sort shows by average rating, group by genre, etc.
 
+#### Mobile first approach
+All the styling was made with the idea that mobile is the main device.
+I did only use 1 breakpoint at 860px to adapt the elements to a wider screen device.
+
 #### Horizontal section component
 **Disclaimer**:
 This component is something I did from scratch with a few lines of javascript and css, tested in chrome (desktop and android phone) and Iphone 7+. I'm not sure if it will work in other browsers/devices.
