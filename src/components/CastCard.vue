@@ -6,7 +6,6 @@ defineProps({
   },
   image: {
     type: String,
-    required: true,
     default: "@/assets/default_person.png",
   },
 });

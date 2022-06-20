@@ -8,7 +8,7 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["search", "click"]);
+const emit = defineEmits(["search"]);
 
 const term = ref(props.defaultValue);
 
