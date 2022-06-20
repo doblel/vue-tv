@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, reactive } from "vue";
+import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import { useStore } from "@/stores";
@@ -12,10 +12,6 @@ import SearchBar from "@/components/SearchBar.vue";
 const route = useRoute();
 const router = useRouter();
 const store = useStore();
-
-const state = reactive({
-  searchTerm: "",
-});
 
 onMounted(async () => {
   // store all home page shows to prevent a request each time we navigate back
@@ -34,7 +30,6 @@ onMounted(async () => {
 
 async function handleSearch(term, updateUrl = true) {
   store.fetchResults(term);
-  state.searchTerm = term;
 
   if (updateUrl) {
     router.push({ path: "/", query: { ...route.query, q: term } });
@@ -48,7 +43,7 @@ async function handleSearch(term, updateUrl = true) {
       <h1>Welcome to Vue-TV</h1>
       <h2>The best site to browse your favorie TV shows</h2>
       <div class="search">
-        <SearchBar :defaultValue="state.searchTerm" @search="handleSearch" />
+        <SearchBar :defaultValue="route.query?.q" @search="handleSearch" />
       </div>
     </div>
   </div>
@@ -58,7 +53,7 @@ async function handleSearch(term, updateUrl = true) {
     </template>
     <HorizontalSection
       v-if="store.searchResults.length && !store.areResultsLoading"
-      :name="`Results for ${state.searchTerm}`"
+      :name="`Results for ${route.query?.q}`"
     >
       <ShowCard
         :id="show.id"
