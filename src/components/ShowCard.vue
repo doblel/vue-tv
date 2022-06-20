@@ -20,7 +20,7 @@ defineProps({
 
 <template>
   <RouterLink :to="`/show/${id}`">
-    <img :src="image" class="show-card" loading="lazy" :alt="`${name} image`" />
+    <img :title="name" :src="image" class="show-card" loading="lazy" :alt="`${name} image`" />
     <span class="sr-only">{{ name }}</span>
   </RouterLink>
 </template>
