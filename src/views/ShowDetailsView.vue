@@ -113,6 +113,7 @@ onUnmounted(() => {
 
   .cast {
     padding: 0;
+    margin-top: 2rem;
   }
   .details-page {
     padding: 1rem;
