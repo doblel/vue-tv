@@ -47,8 +47,15 @@ Behavior:
 - On mobile: it works with the slide gesture as we use to in other sites.
 - On Desktop: uses the scroll or wheel  event to (only if you are with the cursor on top of the section) replace the vertical scroll on the page with the horizontal scroll of the slides container.
 
+### Unit tests
+I added some basic unit test to the presentational components. I Cannot make tests for the view components since I've picked up a new state management library and I do not know how to test it.
+
+<img width="454" alt="image" src="https://user-images.githubusercontent.com/12605000/174546306-b3de591b-86c4-4204-8e7d-a9a21977ce80.png">
+
+
 ### TO DO
-- [ ] Add unit tests
+- [x] ~~Add unit tests~~
+- [ ] Improve code coverage with more unit tests
 - [ ] Improve loading states
 - [ ] Find a way to optimize image loads
 - [ ] Filter shows by genre and/or rating
