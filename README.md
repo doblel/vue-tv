@@ -11,7 +11,7 @@ You can see a temporary [Live demo](https://doblel.github.io)
 
 Once you have cloned the repo (you can make it with `git clone https://github.com/doblel/vue-tv.git`) navigate to the project's folder, install all dependencies with `npm i` and run the project in development mode with `npm run dev` or in production mode with `npm run build && npm run preview`
 
-Note: you may need to have installed the latest version of vue, in that case you can install it globally with `npm i -g vue@latest`
+**Note**: you may need to have installed the latest version of vue, in that case you can install it globally with `npm i -g vue@latest`
 
 ### Tech stack and requirements
 - Vue 3 for the UI
