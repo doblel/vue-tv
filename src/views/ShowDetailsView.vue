@@ -7,6 +7,7 @@ import { useStore } from "../stores";
 import HorizontalSection from "@/components/HorizontalSection.vue";
 import CastCard from "@/components/CastCard.vue";
 import GoBackButton from "@/components/GoBackButton.vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 const route = useRoute();
 const store = useStore();
@@ -24,7 +25,9 @@ onUnmounted(() => {
 
 <template>
   <div class="details-page">
-    <template v-if="store.areDetailsLoading">Loading details...</template>
+    <template v-if="store.areDetailsLoading">
+      <LoadingSpinner />
+    </template>
     <template v-if="store.showDetails && !store.areDetailsLoading">
       <GoBackButton class="back-cta" />
       <div class="info">

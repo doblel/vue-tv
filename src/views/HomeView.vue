@@ -8,6 +8,7 @@ import { GENRES } from "@/constants";
 import HorizontalSection from "@/components/HorizontalSection.vue";
 import ShowCard from "@/components/ShowCard.vue";
 import SearchBar from "@/components/SearchBar.vue";
+import LoadingSpinner from "@/components/LoadingSpinner.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -49,7 +50,7 @@ async function handleSearch(term, updateUrl = true) {
   </div>
   <div class="content">
     <template v-if="store.areResultsLoading">
-      <h1>LOADING RESULTS..</h1>
+      <LoadingSpinner />
     </template>
     <HorizontalSection
       v-if="store.searchResults.length && !store.areResultsLoading"
@@ -64,7 +65,7 @@ async function handleSearch(term, updateUrl = true) {
       />
     </HorizontalSection>
     <template v-if="store.areSectionsLoading">
-      <h1>LOADING SECTIONS..</h1>
+      <LoadingSpinner />
     </template>
     <template v-if="store.homeSelection && !store.areSectionsLoading">
       <HorizontalSection :name="genre" v-for="genre in GENRES" :key="genre">
