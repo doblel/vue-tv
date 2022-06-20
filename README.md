@@ -56,7 +56,7 @@ I added some basic unit test to the presentational components. I Cannot make tes
 ### TO DO
 - [x] ~~Add unit tests~~
 - [ ] Improve code coverage with more unit tests
-- [ ] Improve loading states
+- [x] ~~Improve loading states~~
 - [ ] Find a way to optimize image loads
 - [ ] Filter shows by genre and/or rating
 - [ ] List Seasons and Episodes
